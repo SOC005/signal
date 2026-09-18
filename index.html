@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sentinel Atlas—network intelligence triage for authorized investigations." />
+    <title>Sentinel Atlas · Network Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+    <main class="shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Sentinel Atlas home"><span class="brand-mark">S</span><span>SENTINEL<br /><b>ATLAS</b></span></a>
+        <nav>
+          <a class="nav-item active" href="#workspace"><span>◈</span> Intelligence desk</a>
+          <a class="nav-item" href="#history"><span>◷</span> Case history</a>
+          <a class="nav-item" href="#sources"><span>◇</span> Data sources</a>
+        </nav>
+        <section class="policy-card"><span class="eyebrow">AUTHORIZED USE</span><p>Public-network data only. Record your lawful purpose before operational use.</p><span class="status-dot"></span> Audit mode enabled</section>
+        <div class="sidebar-footer"><span>v1.0.0</span><span>LOCAL-FIRST</span></div>
+      </aside>
+
+      <section class="content" id="top">
+        <header class="topbar"><div><span class="eyebrow">NETWORK INTELLIGENCE / PUBLIC DATA</span><h1>Investigation workspace</h1></div><div class="session"><span class="live-dot"></span> Secure local session <button class="icon-button" id="clearHistory" title="Clear local history" aria-label="Clear local history">⌫</button></div></header>
+        <section class="disclosure"><strong>Professional use notice.</strong> Results are leads, not identity evidence. Do not use this tool to target, track, or make determinations about individuals.</section>
+
+        <section class="search-panel" id="workspace">
+          <div class="search-heading"><div><span class="eyebrow">NEW LOOKUP</span><h2>Locate public network context</h2></div><span class="source-pill">LIVE SOURCES</span></div>
+          <form id="lookupForm" novalidate>
+            <label class="sr-only" for="query">IP address, domain, or ASN</label>
+            <div class="input-wrap"><span class="search-symbol">⌕</span><input id="query" name="query" autocomplete="off" spellcheck="false" placeholder="Enter an IPv4, IPv6, domain, or AS number" /><button class="primary-button" id="lookupButton" type="submit">Run assessment <span>→</span></button></div>
+            <div class="quick-types"><span>SUPPORTED:</span><button type="button" data-example="1.1.1.1">IPv4</button><button type="button" data-example="2606:4700:4700::1111">IPv6</button><button type="button" data-example="cloudflare.com">Domain</button><button type="button" data-example="AS13335">ASN</button><span class="no-url">URL analysis intentionally excluded</span></div>
+          </form>
+        </section>
+
+        <section id="emptyState" class="empty-state"><div class="radar"><i></i><i></i><i></i><b>+</b></div><div><h2>Ready for an authorized lookup</h2><p>Enter a public IP address, domain, or autonomous-system number to assemble a source-attributed intelligence brief.</p></div></section>
+        <section id="loadingState" class="loading-state hidden"><span class="spinner"></span><div><strong>Collecting public registry data</strong><p>DNS, routing, registration, and abuse-contact sources are being queried.</p></div></section>
+        <section id="errorState" class="error-state hidden" role="alert"></section>
+
+        <section id="results" class="results hidden" aria-live="polite">
+          <div class="result-title"><div><span class="eyebrow">ASSESSMENT BRIEF</span><h2 id="resultQuery">—</h2><p id="resultMeta">Public routing and registry context</p></div><button id="copyBrief" class="secondary-button">Copy brief</button></div>
+          <div class="summary-grid" id="summaryGrid"></div>
+          <div class="details-grid"><article class="panel wide"><div class="panel-head"><div><span class="eyebrow">NETWORK PROFILE</span><h3>Registry & routing context</h3></div><span class="verified">SOURCE-ATTRIBUTED</span></div><dl class="data-list" id="networkData"></dl></article><article class="panel"><div class="panel-head"><div><span class="eyebrow">ANONYMITY REVIEW</span><h3>VPN / proxy signals</h3></div><span class="neutral-chip">NOT ASSESSED</span></div><div class="risk-card"><span class="risk-icon">◎</span><p><strong>Provider required.</strong> VPN, proxy, Tor, and hosting classification needs an approved risk-intelligence provider. This interface will not infer it from ASN alone.</p></div><a href="#sources" class="text-link">Review data handling <span>→</span></a></article><article class="panel wide" id="dnsPanel"><div class="panel-head"><div><span class="eyebrow">DOMAIN RESOLUTION</span><h3>Live DNS observations</h3></div><span class="verified">DNS-OVER-HTTPS</span></div><div id="dnsData" class="dns-grid"></div></article></div>
+        </section>
+
+        <section id="history" class="history"><div class="section-head"><div><span class="eyebrow">THIS BROWSER</span><h2>Recent case activity</h2></div><span id="historyCount">0 entries</span></div><div id="historyList" class="history-list"><p class="muted">No local lookups recorded in this session.</p></div></section>
+        <section id="sources" class="sources"><span class="eyebrow">TRANSPARENCY</span><h2>Data sources & safeguards</h2><div class="source-grid"><div><b>RIPEstat</b><p>Network prefix, origin ASN, and abuse-contact context.</p></div><div><b>Cloudflare DoH</b><p>Public DNS records over encrypted HTTPS.</p></div><div><b>RDAP</b><p>Registry-provided network and domain registration data.</p></div><div><b>Local history</b><p>Stored in your browser only; clear it any time.</p></div></div></section>
+      </section>
+    </main>
+    <template id="metricTemplate"><article class="metric"><span class="eyebrow"></span><strong></strong><small></small></article></template>
+    <script src="app.js"></script>
+  </body>
+</html>
