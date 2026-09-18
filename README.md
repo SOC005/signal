@@ -5,7 +5,6 @@
 ## What it does
 
 - Validates IPv4, IPv6, domains, and ASN values locally before making a request.
-- Builds a fuller live IP brief from routing, abuse-contact, registry, operator/ISP, and coarse geolocation fields while showing how many sources responded.
 - Performs live, no-key IP network and abuse-contact lookups through [RIPEstat](https://stat.ripe.net/).
 - Resolves A, AAAA, MX, NS, and TXT DNS records using Cloudflare DNS-over-HTTPS and retrieves domain registration data through RDAP.
 - Clearly separates observed routing data from **VPN/proxy risk signals**. The interface never claims a VPN or proxy result without a configured, attributable risk-data provider.
@@ -30,7 +29,6 @@ Then browse to `http://localhost:8080`.
 | Prefix, ASN, abuse contact | RIPEstat | Public Internet-routing information; coverage and freshness vary. |
 | DNS | Cloudflare DNS-over-HTTPS | Live public DNS only. |
 | Registration | RDAP.org | The authoritative registry response varies by TLD/RIR. |
-| Operator and coarse geolocation | IPwho.is | Public IP geolocation; it is an approximation and must not be treated as person-level location evidence. |
 | VPN/proxy | Optional provider integration | Requires an approved provider with legal authorization. The app intentionally displays “not assessed” by default. |
 
 No identity resolution, device tracking, credential lookup, or URL scanning is included.
@@ -38,3 +36,4 @@ No identity resolution, device tracking, credential lookup, or URL scanning is i
 ## GitHub publishing
 
 Push this repository to GitHub and enable **Settings → Pages → Deploy from a branch → main / root** to publish the static application.
+
